@@ -1,22 +1,11 @@
-import express from 'express';
+const env = require("./config/env");
+const app = require("./app");
+const connectDB = require("./config/db");
 
-const app = express();
-const PORT = 3000;
-
-// Middleware
-app.use(express.json());
-
-// Routes
-app.get('/', (req, res) => {
-  res.send('Hello Rahul 🚀 Your server is running!');
-});
-
-app.get('/api/data', (req, res) => {
-  res.json({ message: "This is API data" });
-});
-
+// Connect to MongoDB
+connectDB();
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server running on 123 http://localhost:${PORT}`);
+app.listen(env.PORT, () => {
+  console.log(`Server running on http://localhost:${env.PORT}`);
 });
